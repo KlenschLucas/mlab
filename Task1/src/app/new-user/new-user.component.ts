@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'app-new-user',
@@ -16,7 +17,11 @@ export class NewUserComponent implements OnInit {
   contact: string;
   picture: string;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private messagesService: MessagesService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -29,6 +34,15 @@ export class NewUserComponent implements OnInit {
     const email = form.elements['email'].value;
 
     this.userService.newUser(id, name, surname, email, contact);
+    this.messagesService.add(
+      'New User',
+      `Add new user
+    name: ${name}
+    surname: ${surname}
+    email: ${email}
+    id: ${id}`,
+      'success'
+    );
     this.router.navigate(['/']);
   }
 

@@ -1,14 +1,19 @@
 <div class="mt-5" style="margin-left: 1em; margin-right: 1em;">
   <h1>Users</h1>
-  <input
-    class="form-control"
-    type="text"
-    placeholder="Search Users with Name/Surname or ID"
-    aria-label="Search"
-    style="width: 100%;"
-    [(ngModel)]="searchValue"
-    (keyup)="search()"
-  />
+
+  <div class="input-group mb-3" style="width: 100%;">
+    <div class="input-group-prepend">
+      <i class="fa fa-search input-group-text" aria-hidden="true"></i>
+    </div>
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Search Users"
+      aria-label="Search"
+      [(ngModel)]="searchValue"
+      (keyup)="search()"
+    />
+  </div>
 </div>
 <div *ngIf="!!searchValue; else elseBlock" style="width: 100%;" class="row">
   <div

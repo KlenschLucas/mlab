@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { User } from './user';
 import mockUsers from './mock-users';
 import { MessagesService } from './messages.service';
+import pictures from './pictures';
 
 @Injectable({
   providedIn: 'root',
@@ -33,13 +34,13 @@ export class UserService {
     contact: string,
     email: string
   ): void {
-    const rando = Math.random() * this.users.length;
+    const rando = Math.random() * pictures.length;
 
     const u = this.users.find((user) => user.id === id);
     if (u) {
       throw Error('User with id exists');
     }
-    const picture = this.users.slice(rando, rando + 1)[0].picture;
+    const picture = pictures.slice(rando, rando + 1)[0];
 
     const user = new User(id, name, surname, contact, email, picture);
     this.users.push(user);

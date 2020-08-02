@@ -2,78 +2,102 @@
   <div class="pad">
     <h2>User Details</h2>
     <form name="userDetails">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="name">Name</label>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <i class="fa fa-user input-group-text" aria-hidden="true"></i>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Name"
+            name="name"
+            title="Name"
+            id="name"
+            required
+            [value]="name || ''"
+          />
         </div>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Name"
-          name="name"
-          title="Name"
-          id="name"
-          required
-          [value]="name || ''"
-        />
       </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="surname">Surname</label>
+      <div class="form-group">
+        <label for="surname">Surname</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <i class="fa fa-user input-group-text" aria-hidden="true"></i>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Surname"
+            name="surname"
+            title="Surname"
+            required
+            [value]="surname || ''"
+          />
         </div>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Surname"
-          name="surname"
-          title="Surname"
-          required
-          [value]="surname || ''"
-        />
       </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="email">Email</label>
+
+      <div class="form-group">
+        <label for="surname">Email</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <i class="fa fa-envelope input-group-text" aria-hidden="true"></i>
+          </div>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Email"
+            name="email"
+            title="Email"
+            id="email"
+            required
+            [value]="email || ''"
+          />
         </div>
-        <input
-          type="email"
-          class="form-control"
-          placeholder="Email"
-          name="email"
-          title="Email"
-          required
-          [value]="email || ''"
-        />
       </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="id">ID</label>
+
+      <div class="form-group">
+        <label for="surname">ID</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <i class="fa fa-id-card input-group-text" aria-hidden="true"></i>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="ID"
+            pattern="[0-9]{13}"
+            name="id"
+            id="id"
+            title="ID Number"
+            required
+            [value]="id || ''"
+          />
         </div>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="ID"
-          pattern="[0-9]{13}"
-          name="id"
-          title="ID Number"
-          required
-          [value]="id || ''"
-        />
       </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="contact">Contact</label>
+
+      <div class="form-group">
+        <label for="surname">Contact Number</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <i
+              class="fa fa-phone-square input-group-text"
+              aria-hidden="true"
+            ></i>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Contact"
+            name="contact"
+            id="contact"
+            title="Contact Number"
+            required
+            pattern="[0][0-9]{9}"
+            [value]="contact || ''"
+          />
         </div>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Contact"
-          name="contact"
-          title="Contact Number"
-          required
-          pattern="[0][0-9]{9}"
-          [value]="contact || ''"
-        />
       </div>
       <div class="input-group mb-3">
         <input
