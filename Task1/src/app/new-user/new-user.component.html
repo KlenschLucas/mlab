@@ -1,0 +1,92 @@
+<div class="col col-lg-6" *ngIf="'selectedUserIndex < 0'">
+  <div class="pad">
+    <h2>User Details</h2>
+    <form name="userDetails">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="name">Name</label>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          name="name"
+          title="Name"
+          id="name"
+          required
+          [value]="name || ''"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="surname">Surname</label>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Surname"
+          name="surname"
+          title="Surname"
+          required
+          [value]="surname || ''"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="email">Email</label>
+        </div>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Email"
+          name="email"
+          title="Email"
+          required
+          [value]="email || ''"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="id">ID</label>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="ID"
+          pattern="[0-9]{13}"
+          name="id"
+          title="ID Number"
+          required
+          [value]="id || ''"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="contact">Contact</label>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Contact"
+          name="contact"
+          title="Contact Number"
+          required
+          pattern="[0][0-9]{9}"
+          [value]="contact || ''"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <input
+          type="submit"
+          class="btn btn-block btn-primary buttons"
+          name="Save"
+          value="Save New User"
+          (click)="saveUser()"
+        />
+        <button class="btn btn-block btn-info buttons" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

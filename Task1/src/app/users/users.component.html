@@ -1,111 +1,42 @@
 <div class="row">
   <div
-    class="col col-lg-4"
-    style="background-color: lightgrey; min-height: 100vh;"
+    class="col col-sm-4 col-lg-4 col-md-2 col-xl-2"
+    *ngFor="let user of users; let i = index"
   >
-    <ul>
-      <div *ngFor="let user of users; let i = index">
-        <li *ngIf="user.name" class="btn btn-block" (click)="selectUser(i)">
-          {{ user.name }} {{ user.surname }}
-        </li>
+    <div class="card">
+      <div class="image">
+        <img [src]="user.picture" />
       </div>
-    </ul>
-    <button (click)="addUser()" class="btn btn-primary btn-block">
-      Add New User
-    </button>
-    <button (click)="deleteAllUsers()" class="btn btn-danger btn-block">
-      Delete All Users
-    </button>
-  </div>
-  <div class="col col-lg-8">
-    <div class="pad" *ngIf="selectedUser">
-      <h2>User Details</h2>
-      <form name="userDetails">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="name">Name</label>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Name"
-            name="name"
-            title="Name"
-            id="name"
-            required
-            [value]="selectedUser.name || ''"
-          />
+      <div class="card-inner">
+        <div class="header">
+          <h2>{{ user.name }} {{ user.surname }}</h2>
+          <h3>{{ user.id }}</h3>
         </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="surname">Surname</label>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Surname"
-            name="surname"
-            title="Surname"
-            required
-            [value]="selectedUser.surname"
-          />
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="email">Email</label>
-          </div>
-          <input
-            type="email"
-            class="form-control"
-            placeholder="Email"
-            name="email"
-            title="Email"
-            required
-            [value]="selectedUser.email || ''"
-          />
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="id">ID</label>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="ID"
-            pattern="[0-9]{13}"
-            name="id"
-            title="ID Number"
-            required
-            [value]="selectedUser.id || ''"
-          />
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="contact">Contact</label>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Contact"
-            name="contact"
-            title="Contact Number"
-            required
-            pattern="[0][0-9]{9}"
-            [value]="selectedUser.contact || ''"
-          />
-        </div>
+        <div class="content">
+          <p>
+            ID: {{ user.id }} <br />
+            Contact: <a href="tel:{{ user.contact }}">{{ user.contact }}</a>
+            <br />
+            Email: <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+            <br />
+            <br />
+          </p>
+          <div>
+            <a
+              routerLink="/user/{{ user.id }}"
+              class="btn btn-primary btn-block"
+              >Edit User</a
+            >
 
-        <div class="row">
-          <input
-            (click)="editUser()"
-            type="submit"
-            class="btn btn-block btn-info buttons"
-            name="Save"
-            value="Save"
-          />
-          <button class="btn btn-block btn-danger buttons">Delete User</button>
+            <button
+              (click)="deleteUser(user.id)"
+              class="btn btn-block btn-danger"
+            >
+              Delete User
+            </button>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
