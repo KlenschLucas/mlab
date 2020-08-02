@@ -8,13 +8,7 @@ import { Message } from '../message';
   styleUrls: ['./toasts.component.css'],
 })
 export class ToastsComponent implements OnInit {
-  messages: Message[];
-  message: Message;
-  constructor(private messagesService: MessagesService) {}
+  constructor(public messagesService: MessagesService) {}
 
-  ngOnInit(): void {
-    this.messagesService
-      .getMessages()
-      .subscribe((messages) => (this.messages = messages));
-  }
+  ngOnInit(): void {}
 }

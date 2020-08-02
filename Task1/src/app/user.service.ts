@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 
 import { User } from './user';
 import mockUsers from './mock-users';
+import { MessagesService } from './messages.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,19 @@ import mockUsers from './mock-users';
 export class UserService {
   users: User[];
 
-  constructor() {
+  constructor(private messagesService: MessagesService) {
+    const users = localStorage.getItem('users');
+    if (users) {
+      const usersObject = JSON.parse(users);
+      this.users = usersObject;
+      messagesService.add('Welcome', 'Loaded in users', 'default');
+      return;
+    }
+
     this.users = mockUsers;
+    localStorage.setItem('users', JSON.stringify(this.users));
+
+    messagesService.add('Welcome', 'Added new mock users', 'default');
   }
 
   newUser(
@@ -31,6 +43,7 @@ export class UserService {
 
     const user = new User(id, name, surname, contact, email, picture);
     this.users.push(user);
+    localStorage.setItem('users', JSON.stringify(this.users));
   }
 
   editUser(
@@ -46,10 +59,12 @@ export class UserService {
         ? user
         : new User(id, name, surname, contact, email, picture)
     );
+    localStorage.setItem('users', JSON.stringify(this.users));
   }
 
   deleteUser(id: number): Observable<User[]> {
     this.users = this.users.filter((user) => user.id !== id);
+    localStorage.setItem('users', JSON.stringify(this.users));
     return of(this.users);
   }
 
@@ -62,6 +77,7 @@ export class UserService {
   }
 
   getUsers(): Observable<User[]> {
+    localStorage.setItem('users', JSON.stringify(this.users));
     return of(this.users);
   }
 }

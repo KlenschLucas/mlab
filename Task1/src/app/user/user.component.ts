@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'app-user',
@@ -15,11 +16,11 @@ export class UserComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private messagesService: MessagesService
   ) {}
 
   editUser(): void {
-    console.log('edit');
     const form = document.forms[0];
     const name = form.elements['name'].value;
     const surname = form.elements['surname'].value;
@@ -34,13 +35,21 @@ export class UserComponent implements OnInit {
       contact,
       this.user.picture
     );
-
+    this.messagesService.add(
+      'Edited User',
+      `User ${name} with id: ${id} was edited successfully`,
+      'success'
+    );
     this.router.navigate(['/']);
   }
 
   deleteUser() {
     this.userService.deleteUser(this.id);
-    // TODO: Notification
+    this.messagesService.add(
+      'Deleted User',
+      `User ${this.user.name} with id: ${this.user.id} was deleted successfully`,
+      'danger'
+    );
     this.router.navigate(['/']);
   }
 

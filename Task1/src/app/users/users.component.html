@@ -1,7 +1,19 @@
-<div class="row">
+<div class="mt-5" style="margin-left: 1em; margin-right: 1em;">
+  <h1>Users</h1>
+  <input
+    class="form-control"
+    type="text"
+    placeholder="Search Users with Name/Surname or ID"
+    aria-label="Search"
+    style="width: 100%;"
+    [(ngModel)]="searchValue"
+    (keyup)="search()"
+  />
+</div>
+<div *ngIf="!!searchValue; else elseBlock" style="width: 100%;" class="row">
   <div
-    class="col col-sm-4 col-lg-4 col-md-2 col-xl-2"
-    *ngFor="let user of users; let i = index"
+    class="col col-sm-4 col-lg-4 col-md-4 col-xl-2"
+    *ngFor="let user of filteredUsers"
   >
     <div class="card">
       <div class="image">
@@ -27,7 +39,6 @@
               class="btn btn-primary btn-block"
               >Edit User</a
             >
-
             <button
               (click)="deleteUser(user.id)"
               class="btn btn-block btn-danger"
@@ -40,3 +51,47 @@
     </div>
   </div>
 </div>
+<ng-template #elseBlock>
+  <div class="row">
+    <div
+      class="col col-sm-4 col-lg-4 col-md-2 col-xl-2"
+      *ngFor="let user of users; let i = index"
+    >
+      <div class="card">
+        <div class="image">
+          <img [src]="user.picture" />
+        </div>
+        <div class="card-inner">
+          <div class="header">
+            <h2>{{ user.name }} {{ user.surname }}</h2>
+            <h3>{{ user.id }}</h3>
+          </div>
+          <div class="content">
+            <p>
+              ID: {{ user.id }} <br />
+              Contact: <a href="tel:{{ user.contact }}">{{ user.contact }}</a>
+              <br />
+              Email: <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+              <br />
+              <br />
+            </p>
+            <div>
+              <a
+                routerLink="/user/{{ user.id }}"
+                class="btn btn-primary btn-block"
+                >Edit User</a
+              >
+
+              <button
+                (click)="deleteUser(user.id)"
+                class="btn btn-block btn-danger"
+              >
+                Delete User
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
