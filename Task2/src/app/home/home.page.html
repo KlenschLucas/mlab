@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Shopping List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Shopping List</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div
+    id="container"
+    *ngIf="shoppingListService.shoppingList.length === 0;else elseBlock"
+  >
+    <strong>No Shopping Lists</strong>
+    <p>Add a new list</p>
+  </div>
+  <ng-template #elseBlock>
+    <ion-list>
+      <ion-item-sliding
+        *ngFor="let item of shoppingListService.shoppingList;let i=index"
+      >
+        <ion-item>
+          <ion-badge slot="start">{{item.amount}}</ion-badge>
+          <ion-label>
+            <h2>{{item.title}}</h2>
+          </ion-label>
+          <ion-button
+            size="small"
+            color="white"
+            (click)="shoppingListService.delete(item.index)"
+          >
+            <ion-icon color="danger" name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-item-options side="start">
+          <ion-item-option
+            color="danger"
+            (click)="shoppingListService.delete(item.index)"
+            >Delete</ion-item-option
+          >
+        </ion-item-options>
+        <ion-item-options side="end">
+          <ion-item-option
+            (click)="shoppingListService.delete(item.index)"
+            color="danger"
+            >Delete</ion-item-option
+          >
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ng-template>
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    style="transform: translate(-25%, -25%);"
+  >
+    <ion-fab-button (click)="presentModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

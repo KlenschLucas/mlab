@@ -3,6 +3,7 @@ import { User } from '../user';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { MessagesService } from '../messages.service';
+import pictures from '../pictures';
 
 @Component({
   selector: 'app-new-user',
@@ -16,14 +17,20 @@ export class NewUserComponent implements OnInit {
   email: string;
   contact: string;
   picture: string;
+  pictures: string[];
 
+  selectedPicture: number;
   constructor(
     private userService: UserService,
     private router: Router,
     private messagesService: MessagesService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.pictures = pictures;
+    this.picture = pictures[0];
+    this.selectedPicture = 0;
+  }
 
   saveUser(): void {
     const form = document.forms[0];
@@ -48,5 +55,16 @@ export class NewUserComponent implements OnInit {
 
   cancel(): void {
     this.router.navigate(['/']);
+  }
+  nextPicture(): void {
+    this.selectedPicture = (this.selectedPicture + 1) % pictures.length;
+    this.picture = pictures[this.selectedPicture];
+  }
+  previousPicture(): void {
+    this.selectedPicture = (this.selectedPicture - 1) % pictures.length;
+    if (this.selectedPicture === -1) {
+      this.selectedPicture += pictures.length;
+    }
+    this.picture = pictures[this.selectedPicture];
   }
 }
