@@ -1,0 +1,14 @@
+.input {
+  border-radius: 30%;
+  background-color: grey;
+}
+
+.container {
+  padding: 0;
+  margin: 0;
+  top: 50%;
+  width: 100%;
+  position: absolute;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

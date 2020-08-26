@@ -21,11 +21,10 @@ export class QuizPage implements OnInit {
     this.marks = this.answers.reduce((sum, answer, index) => {
       return (sum += answer === this.quizService.quiz[index].answer ? 1 : 0);
     });
-    if (this.marks / this.quizService.quiz.length > 0.8) {
-      console.log("passed");
-    } else {
-      console.log("failed");
-    }
+
+    this.router.navigateByUrl("/quiz-results", {
+      state: { marks: this.marks / this.quizService.quiz.length },
+    });
   }
 
   setAnswer(questionIndex: number, answersIndex: number): void {

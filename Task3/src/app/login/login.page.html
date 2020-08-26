@@ -1,0 +1,31 @@
+<ion-content fullscreen="true" mode="md">
+  <div class="container">
+    <ion-card>
+      <ion-card-header>Login</ion-card-header>
+      <ion-item>
+        <ion-label style="width: 30%;">
+          Email
+        </ion-label>
+        <ion-input placeholder="joe.doe@gmail.com" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="width: 30%;">
+          Password
+        </ion-label>
+        <ion-input
+          placeholder="********************"
+          type="password"
+        ></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="login()">Login</ion-button>
+      <ion-button color="warning" expand="block" (click)="login()"
+        >Login with Google</ion-button
+      >
+
+      <ion-button color="danger" expand="block" (click)="login()"
+        >Login with Facebook</ion-button
+      >
+    </ion-card>
+  </div>
+</ion-content>

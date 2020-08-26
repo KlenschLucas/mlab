@@ -1,9 +1,25 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>quiz-results</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content
+  [fullscreen]="true"
+  style="height: 100%; background-color: lightgreen;"
+>
+  <div *ngIf="marks>0.8;else failed">
+    <ion-card>
+      <h1>Passed</h1>
+      <h2>{{marks*100}}%</h2>
+    </ion-card>
+  </div>
 
-<ion-content>
+  <ng-template #failed>
+    <ion-card>
+      <h1>Failed</h1>
+      <h2>{{marks*100}}%</h2>
+      <ion-button expand="block" routerLink="/quiz">
+        Retry Quiz
+      </ion-button>
 
+      <ion-button expand="block" color="danger" routerLink="/home">
+        Go Home
+      </ion-button>
+    </ion-card>
+  </ng-template>
 </ion-content>
